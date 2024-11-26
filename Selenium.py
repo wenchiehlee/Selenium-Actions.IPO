@@ -72,7 +72,7 @@ ActionChains(driver).move_to_element(download_button).click(download_button).per
 
 
 # 等待下載完成
-time.sleep(5)  # 視下載速度調整時間
+time.sleep(2)  # 視下載速度調整時間
 print("CSV 文件下載完成！")
 
             
