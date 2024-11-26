@@ -88,4 +88,5 @@ if DownloadedFilename != "company-utf8.csv":
     shutil.copy(DownloadedFilename, "company-utf8.csv")
     print(f"File '{DownloadedFilename}' copied to 'company-utf8.csv'.")
     print("Download completed...",downloadDir+'company-utf8.csv')
-
+    # 移除原始檔案
+    os.remove(DownloadedFilename)
