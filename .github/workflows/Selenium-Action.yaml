@@ -100,9 +100,9 @@ jobs:
           # Optional priority: 'high', 'normal' (default) or 'low'
           priority: low
           # Optional nodemailerlog: true/false
-          nodemailerlog: false
+          nodemailerlog: true
           # Optional nodemailerdebug: true/false if true lognodem will also be set true
-          nodemailerdebug: false    
+          nodemailerdebug: true    
       - name: Commit and Push The Results From Python Selenium Action
         run: |
          git config --global user.name "github-actions[bot]"
