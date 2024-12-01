@@ -1,0 +1,7 @@
+chromedriver-autoinstaller 
+selenium 
+pyvirtualdisplay
+
+csv2md
+
+pandas

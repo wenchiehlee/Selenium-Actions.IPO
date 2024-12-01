@@ -3,9 +3,9 @@ on:
   push:
     branches:
       - main
-  workflow_dispatch:
   schedule:
     - cron: "0 7 * * *"     # Runs every day at 7:00 AM UTC
+  workflow_dispatch:
 jobs:
   scrape:
     runs-on: ubuntu-latest
@@ -23,11 +23,11 @@ jobs:
         
        # Need to fetch reqs if needed
       - name: Installing all necessary packages
-        run: pip install chromedriver-autoinstaller selenium pyvirtualdisplay
+        run: pip install -r requirements.txt
       - name: Install xvfb
         run: sudo apt-get install xvfb
-      - name: Install pandas
-        run: pip install pandas
+
+
 
       - name: Running the Python script
         run: python Selenium.py
