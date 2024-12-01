@@ -39,6 +39,9 @@ jobs:
           # Avoid using single or double quotes for multiline patterns
           files: |
             *.csv
+      - name: CSV filter
+        run: |
+          cat company-utf8.csv | python csv-filter.py > company-utf8-filter.csv
 
       - name: List all changed files csv files if csv changed
         if: steps.changed-csv-files.outputs.any_changed == 'true'
@@ -53,6 +56,7 @@ jobs:
 #        if: steps.changed-csv-files.outputs.any_changed == 'true'
         run: |
           python csv-to-md.py company-utf8.csv utf8 > company-utf8.md
+          python csv-to-md.py company-utf8-filter.csv utf8 > company-utf8-filter.md
       - name: Send mail if csv changed
 #        if: steps.changed-csv-files.outputs.any_changed == 'true'        
         env:
@@ -87,7 +91,7 @@ jobs:
           # Optional plain body:
           body: Build job of ${{github.repository}} completed successfully!
           # Optional HTML body read from file:
-          html_body: file://company-utf8.md
+          html_body: file://company-utf8-filter.md
           # Optional carbon copy recipients:
           # cc: kyloren@example.com,leia@example.com
           # Optional blind carbon copy recipients:
