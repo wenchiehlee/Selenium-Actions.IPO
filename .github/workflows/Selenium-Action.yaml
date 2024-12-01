@@ -48,8 +48,13 @@ jobs:
           for file in ${ALL_CHANGED_FILES}; do
             echo "$file was changed"
           done
+      - name: Create MD
+        id: csv-table-output
+#        if: steps.changed-csv-files.outputs.any_changed == 'true'
+        run: |
+          python csv-to-md.py company-utf8.csv utf8 > company-utf8.md
       - name: Send mail if csv changed
-#       if: steps.changed-csv-files.outputs.any_changed == 'true'        
+#        if: steps.changed-csv-files.outputs.any_changed == 'true'        
         env:
           ALL_CHANGED_FILES: ${{ steps.changed-csv-files.outputs.all_changed_files }}
   
@@ -62,7 +67,7 @@ jobs:
           #
           #  * smtp://user:password@server:port
           #  * smtp+starttls://user:password@server:port
-          connection_url: ${{secrets.MAIL_CONNECTION}}
+          # connection_url: 
           # Required mail server address if not connection_url:
           server_address: smtp.gmail.com
           # Server port, default 25:
@@ -82,7 +87,7 @@ jobs:
           # Optional plain body:
           body: Build job of ${{github.repository}} completed successfully!
           # Optional HTML body read from file:
-          html_body: file://README.md
+          html_body: file://company-utf8.md
           # Optional carbon copy recipients:
           # cc: kyloren@example.com,leia@example.com
           # Optional blind carbon copy recipients:
@@ -108,7 +113,8 @@ jobs:
          git config --global user.name "github-actions[bot]"
          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
          git add -A
-         git add *.csv
+         git add *.csv 
+         git add *.md 
          git commit -m "GitHub Actions Results added"
          git push
 
