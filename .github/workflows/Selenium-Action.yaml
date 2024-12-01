@@ -32,6 +32,23 @@ jobs:
       - name: Running the Python script
         run: python Selenium.py
 
+      - name: Get all changed on *.csv
+        id: changed-csv-files
+        uses: tj-actions/changed-files@v45
+        with:
+          # Avoid using single or double quotes for multiline patterns
+          files: |
+            *.csv
+
+      - name: List all changed files csv files
+        if: steps.changed-csv-files.outputs.any_changed == 'true'
+        env:
+          ALL_CHANGED_FILES: ${{ steps.changed-csv-files.outputs.all_changed_files }}
+        run: |
+          for file in ${ALL_CHANGED_FILES}; do
+            echo "$file was changed"
+          done
+          
       - name: Commit and Push The Results From Python Selenium Action
         run: |
          git config --global user.name "github-actions[bot]"
