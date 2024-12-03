@@ -6,6 +6,8 @@ on:
   schedule:
     - cron: "0 7 * * *"     # Runs every day at 7:00 AM UTC
   workflow_dispatch:
+  repository_dispatch:
+    types: 2020-Now-utf8-filter.csv
 jobs:
   scrape:
     runs-on: ubuntu-latest
