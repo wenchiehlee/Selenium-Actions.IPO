@@ -55,12 +55,12 @@ jobs:
           done
       - name: Create MD
         id: csv-table-output
-#        if: steps.changed-csv-files.outputs.any_changed == 'true'
+        if: steps.changed-csv-files.outputs.any_changed == 'true'
         run: |
           python csv-to-md.py company-utf8.csv utf8 > company-utf8.md
           python csv-to-md.py company-utf8-filter.csv utf8 > company-utf8-filter.md
       - name: Send mail if csv changed
-#        if: steps.changed-csv-files.outputs.any_changed == 'true'        
+        if: steps.changed-csv-files.outputs.any_changed == 'true'        
         env:
           ALL_CHANGED_FILES: ${{ steps.changed-csv-files.outputs.all_changed_files }}
   
