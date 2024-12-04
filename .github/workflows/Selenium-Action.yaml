@@ -29,10 +29,12 @@ jobs:
       - name: Install xvfb
         run: sudo apt-get install xvfb
 
-
-
       - name: Running the Python script
         run: python Selenium.py
+
+      - name: CSV filter
+        run: |
+          cat company-utf8.csv | python csv-filter.py > company-utf8-filter.csv
 
       - name: Get all changed on *.csv
         id: changed-csv-files
@@ -40,10 +42,7 @@ jobs:
         with:
           # Avoid using single or double quotes for multiline patterns
           files: |
-            *.csv
-      - name: CSV filter
-        run: |
-          cat company-utf8.csv | python csv-filter.py > company-utf8-filter.csv
+            **.csv
 
       - name: List all changed files csv files if csv changed
         if: steps.changed-csv-files.outputs.any_changed == 'true'
