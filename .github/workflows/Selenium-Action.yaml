@@ -39,10 +39,6 @@ jobs:
       - name: Get all changed on *.csv
         id: changed-csv-files
         uses: tj-actions/changed-files@v45
-        with:
-          # Avoid using single or double quotes for multiline patterns
-          files: |
-            **.csv
 
       - name: List all changed files csv files if csv changed
         if: steps.changed-csv-files.outputs.any_changed == 'true'
