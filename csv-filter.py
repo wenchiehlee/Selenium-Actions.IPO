@@ -5,8 +5,9 @@ from csvfilter import Processor
 import csv
 
 def filter_rows(row):
-    #print(f"'{row[0]}'")
-    return "2024" in row[0] and row[6] != ""
+    # 檢查 row[0] 是否包含指定的年份
+    years = ["2025","2024", "2023", "2022", "2021", "2020", "2019","2018","2017"]
+    return any(year in row[0] for year in years) 
 
 # Set up processor with fields to match the expected number of columns in the CSV
 processor = Processor(fields=list(range(26)))  # Fields 0 to 25
