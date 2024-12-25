@@ -1,0 +1,17 @@
+#.github/sync.yml
+group:
+  repos: |
+    wenchiehlee/mkdocs
+    wenchiehlee/mkdocs-life
+    wenchiehlee/mkdocs-investment
+    wenchiehlee/GoogleSearch
+    wenchiehlee/FindMind
+    wenchiehlee/Python.TWSE-PER
+    wenchiehlee/Selenium-Action.TPEX-company
+  files:
+    - source: .gitignore
+      dest:   .gitignore
+    - source: .github/workflows/sync-up.yml
+      dest:   .github/workflows/sync-up.yml
+    - source: .github/sync.yml
+      dest:   .github/sync.yml
