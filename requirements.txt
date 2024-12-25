@@ -3,5 +3,5 @@ selenium
 pyvirtualdisplay
 csvfilter
 csv2md
-
+chardet
 pandas
