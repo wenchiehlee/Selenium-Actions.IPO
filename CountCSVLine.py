@@ -6,6 +6,8 @@ def count_csv_lines(file_path, output_path):
     try:
         with open(file_path, mode='r', encoding='utf-8') as file:
             reader = csv.reader(file)
+            # Skip the header line
+            next(reader, None)
             line_count = sum(1 for _ in reader)
         
         # Create a Shields.io-compatible JSON
