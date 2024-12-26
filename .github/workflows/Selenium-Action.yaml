@@ -122,7 +122,7 @@ jobs:
          git add -A
          git add *.csv 
          git add *.md 
-         git commit -m "GitHub Actions Results added"
+         git commit -m "⬆️ GitHub Actions Results added"
          git push
 
 
