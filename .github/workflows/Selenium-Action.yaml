@@ -48,8 +48,8 @@ jobs:
 
       - name: Lines count
         run: |
-          python CountCSVLine.py TWSE.json TWSE-company-utf8.csv
-          python CountCSVLine.py TPEX.json company-utf8-filter.csv
+          python CountCSVLine.py TWSE.json TWSE-company-utf8.csv "TWSE Total Company"
+          python CountCSVLine.py TPEX.json company-utf8-filter.csv "TPEX Total Company"
 
       - name: List all changed files csv files if csv changed
         if: steps.changed-csv-files.outputs.any_changed == 'true'
@@ -128,8 +128,8 @@ jobs:
          git add *.csv
          git add *.md
          git add *.json
-         git commit -m "⬆️ GitHub Actions Results added"
-         git push
+         git commit -m "⬆️ GitHub Actions Results added" || true
+         git push || true
 
 
          
