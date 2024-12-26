@@ -48,8 +48,8 @@ jobs:
 
       - name: Lines count
         run: |
-          python CountCSVLine.py TWSE.json TWSE-company-utf8.csv "TWSE Total Company"
-          python CountCSVLine.py TPEX.json company-utf8-filter.csv "TPEX Total Company"
+          python CountCSVLine.py TWSE.json TWSE-company-utf8.csv "TWSE Focus Company"
+          python CountCSVLine.py TPEX.json company-utf8-filter.csv "TPEX Focus Company"
 
       - name: List all changed files csv files if csv changed
         if: steps.changed-csv-files.outputs.any_changed == 'true'
