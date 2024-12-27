@@ -3,3 +3,4 @@
 page-authors.json
 *.bak
 __pycache__
+.env
