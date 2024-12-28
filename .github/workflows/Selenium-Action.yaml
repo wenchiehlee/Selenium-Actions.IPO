@@ -36,7 +36,7 @@ jobs:
 
       - name: CSV filter
         run: |
-          cat company-utf8.csv | python csv-filter.py > company-utf8-filter.csv
+          cat TPEX-company-utf8.csv | python csv-filter.py > TPEX-company-utf8-filter.csv
 
       - name: Get all changed on *.csv
         id: changed-csv-files
@@ -49,7 +49,7 @@ jobs:
       - name: Lines count
         run: |
           python CountCSVLine.py TWSE.json TWSE-company-utf8.csv "TWSE Focus Company"
-          python CountCSVLine.py TPEX.json company-utf8-filter.csv "TPEX Focus Company"
+          python CountCSVLine.py TPEX.json TPEX-company-utf8-filter.csv "TPEX Focus Company"
 
       - name: List all changed files csv files if csv changed
         if: steps.changed-csv-files.outputs.any_changed == 'true'
@@ -63,8 +63,8 @@ jobs:
         id: csv-table-output
         if: steps.changed-csv-files.outputs.any_changed == 'true'
         run: |
-          python csv-to-md.py company-utf8.csv utf8 > company-utf8.md
-          python csv-to-md.py company-utf8-filter.csv utf8 > company-utf8-filter.md
+          python csv-to-md.py TPEX-company-utf8.csv utf8 > TPEX-company-utf8.md
+          python csv-to-md.py TPEX-company-utf8-filter.csv utf8 > TPEX-company-utf8-filter.md
       - name: Send mail if csv changed
         if: steps.changed-csv-files.outputs.any_changed == 'true'        
         env:
@@ -99,7 +99,7 @@ jobs:
           # Optional plain body:
           body: Build job of ${{github.repository}} completed successfully!
           # Optional HTML body read from file:
-          html_body: file://company-utf8-filter.md
+          html_body: file://TPEX-company-utf8-filter.md
           # Optional carbon copy recipients:
           # cc: kyloren@example.com,leia@example.com
           # Optional blind carbon copy recipients:
