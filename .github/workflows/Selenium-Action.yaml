@@ -38,6 +38,20 @@ jobs:
         run: |
           cat TPEX-company-utf8.csv | python csv-filter.py > TPEX-company-utf8-filter.csv
 
+
+      - name: Lines count
+        run: |
+          python CountCSVLine.py TWSE.json TWSE-company-utf8.csv "TWSE Focus Company"
+          python CountCSVLine.py TPEX.json TPEX-company-utf8-filter.csv "TPEX Focus Company"
+      
+      - name: Create MD
+        id: csv-table-output
+        run: |
+          python csv-to-md.py TPEX-company-utf8.csv utf8 > TPEX-company-utf8.md
+          python csv-to-md.py TPEX-company-utf8-filter.csv utf8 > TPEX-company-utf8-filter.md
+            
+          python csv-to-md.py TWSE-company-utf8.csv utf8 > TWSE-company-utf8.md
+
       - name: Get all changed on *.csv
         id: changed-csv-files
         uses: tj-actions/changed-files@v45
@@ -45,11 +59,6 @@ jobs:
           # Avoid using single or double quotes for multiline patterns
           files: |
             **.csv
-
-      - name: Lines count
-        run: |
-          python CountCSVLine.py TWSE.json TWSE-company-utf8.csv "TWSE Focus Company"
-          python CountCSVLine.py TPEX.json TPEX-company-utf8-filter.csv "TPEX Focus Company"
 
       - name: List all changed files csv files if csv changed
         if: steps.changed-csv-files.outputs.any_changed == 'true'
@@ -59,14 +68,6 @@ jobs:
           for file in ${ALL_CHANGED_FILES}; do
             echo "$file was changed"
           done
-      - name: Create MD
-        id: csv-table-output
-        if: steps.changed-csv-files.outputs.any_changed == 'true'
-        run: |
-          python csv-to-md.py TPEX-company-utf8.csv utf8 > TPEX-company-utf8.md
-          python csv-to-md.py TPEX-company-utf8-filter.csv utf8 > TPEX-company-utf8-filter.md
-          
-          python csv-to-md.py TWSE-company-utf8.csv utf8 > TWSE-company-utf8.md
       - name: Send mail if csv changed
         if: steps.changed-csv-files.outputs.any_changed == 'true'        
         env:
