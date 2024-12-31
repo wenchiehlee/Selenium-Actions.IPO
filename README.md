@@ -1,7 +1,8 @@
 [![Run Selenium On GitHub Action](https://github.com/wenchiehlee/Selenium-Action.TPEX-company/actions/workflows/Selenium-Action.yaml/badge.svg?branch=main)](https://github.com/wenchiehlee/Selenium-Action.TPEX-company/actions/workflows/Selenium-Action.yaml)
 
-[![Endpoint Badge](https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2Fwenchiehlee%2FSelenium-Action.TPEX-company%2Fmain%2FTWSE.json)](TWSE-company-utf8.md)[![Endpoint Badge](https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2Fwenchiehlee%2FSelenium-Action.TPEX-company%2Fmain%2FTPEX.json)](TPEX-company-utf8-filter.md)
+[![Endpoint Badge](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/wenchiehlee/Selenium-Action.TPEX-company/main/TWSE.json)](TWSE-company-utf8.md)[![Endpoint Badge](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/wenchiehlee/Selenium-Action.TPEX-company/main/TPEX.json)](TPEX-company-utf8-filter.md)
 
+[![Endpoint Badge](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/wenchiehlee/Selenium-Action.TPEX-company/main/TWSE_TPEX.json)](TWSE_TPEX-utf8.md)
 
 # Selenium-Action.TPEX-company
 Working space for Selenium-Action.TPEX-company
