@@ -37,12 +37,16 @@ jobs:
       - name: CSV filter
         run: |
           cat TPEX-company-utf8.csv | python csv-filter.py > TPEX-company-utf8-filter.csv
-
+      - name: CSV merger
+        run: |
+          csvstack TWSE-company-utf8.csv TPEX-company-utf8.csv > TWSE_TPEX-utf8.csv
 
       - name: Lines count
         run: |
           python CountCSVLine.py TWSE.json TWSE-company-utf8.csv "TWSE Auction Company"
           python CountCSVLine.py TPEX.json TPEX-company-utf8.csv "TPEX Auction Company"
+          
+          python CountCSVLine.py TWSE_TPEX.json TWSE_TPEX-utf8.csv "TWSE+TPEX Auction Company"
           
           python CountCSVLine.py TPEX-Filter.json TPEX-company-utf8.csv "TPEX Auction Filter Company"
       - name: Create MD

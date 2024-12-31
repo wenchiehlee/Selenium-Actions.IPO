@@ -2,6 +2,7 @@ chromedriver-autoinstaller
 selenium 
 pyvirtualdisplay
 csvfilter
+csvkit
 csv2md
 chardet
 pandas
