@@ -8,6 +8,7 @@ group:
     wenchiehlee/FindMind
     wenchiehlee/Python.TWSE-PER
     wenchiehlee/Selenium-Action.TPEX-company
+    wenchiehlee/Python-Selenium-Action.TWSE-auction
     wenchiehlee/twstock
     wenchiehlee/rss2md
     wenchiehlee/GoogleSearch
