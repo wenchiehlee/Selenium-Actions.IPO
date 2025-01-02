@@ -1,4 +1,4 @@
-[![Run Selenium On GitHub Action](https://github.com/wenchiehlee/Selenium-Action.TPEX-company/actions/workflows/Selenium-Action.yaml/badge.svg?branch=main)](https://github.com/wenchiehlee/Selenium-Action.TPEX-company/actions/workflows/Selenium-Action.yaml)
+[![Run Selenium On GitHub Action](https://github.com/wenchiehlee/Selenium-Actions.IPO/actions/workflows/Selenium-Action.yaml/badge.svg)](https://github.com/wenchiehlee/Selenium-Actions.IPO/actions/workflows/Selenium-Action.yaml)
 
 [![Endpoint Badge](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/wenchiehlee/Selenium-Action.TPEX-company/main/TWSE.json)](TWSE-company-utf8.md)[![Endpoint Badge](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/wenchiehlee/Selenium-Action.TPEX-company/main/TPEX.json)](TPEX-company-utf8-filter.md)
 
