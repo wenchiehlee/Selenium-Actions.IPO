@@ -5,6 +5,10 @@ from csvfilter import Processor
 import csv
 
 def filter_rows(row):
+    
+    return 
+
+def filter_rows(row):
     """
     Filters rows based on the following condition:
     - row[11]("備註") must not contain specific keywords:
@@ -15,8 +19,11 @@ def filter_rows(row):
         "自撤", "自行撤件", "撤件", "退件", "已下櫃",
         "管理股票", "撤銷上市", "撤銷上櫃", "重新審議","退回"
         ]
+    
+    years = ["2025","2024", "2023", "2022", "2021", "2020", "2019","2018","2017","2016","2015","2014","2013","2012","2011","2010","2009","2008","2007","2006","2005","2004","2003","2002","2001","2000"]
 
-    return not any(keyword in row[11] for keyword in forbidden_keywords)
+    flag = not any(keyword in row[11] for keyword in forbidden_keywords) and any(year in row[0] for year in years) 
+    return flag
 
 # Set up processor with fields to match the expected number of columns in the CSV
 processor = Processor(fields=list(range(26)))  # Fields 0 to 25
