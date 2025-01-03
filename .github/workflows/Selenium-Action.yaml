@@ -32,6 +32,9 @@ jobs:
       - name: Running the Python script
         run: |
           python Selenium.py
+          python ConvertDateFormat.py TPEX-IPO-utf8.csv TPEX-IPO-utf8-converted.csv
+          cp TPEX-IPO-utf8-converted.csv TPEX-IPO-utf8.csv
+          rm TPEX-IPO-utf8-converted.csv
           python TWSE-IPO.py
 
       - name: CSV filter
