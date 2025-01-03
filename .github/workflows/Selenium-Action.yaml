@@ -50,10 +50,10 @@ jobs:
           
           python CountCSVLine.py TWSE_TPEX.json TWSE_TPEX-utf8.csv "TWSE+TPEX IPO Company"
           
-          python CountCSVLine.py TPEX-Filter.json TPEX-company-utf8-filter.csv "TPEX IPO Valid Company"
-          python CountCSVLine.py TWSE-Filter.json TWSE-company-utf8-filter.csv "TWSE IPO Valid Company"
+          python CountCSVLine.py TPEX-filter.json TPEX-company-utf8-filter.csv "TPEX IPO Valid Company"
+          python CountCSVLine.py TWSE-filter.json TWSE-company-utf8-filter.csv "TWSE IPO Valid Company"
 
-          python CountCSVLine.py TWSE_TPEX-Filter.json TWSE_TPEX-utf8-filter.csv "TWSE+TPEX IPO Valid Company"
+          python CountCSVLine.py TWSE_TPEX-filter.json TWSE_TPEX-utf8-filter.csv "TWSE+TPEX IPO Valid Company"
       - name: Create MD
         id: csv-table-output
         run: |
