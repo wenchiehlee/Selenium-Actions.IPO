@@ -37,9 +37,11 @@ jobs:
       - name: CSV filter
         run: |
           cat TPEX-company-utf8.csv | python csv-filter.py > TPEX-company-utf8-filter.csv
+          cat TWSE-company-utf8.csv | python csv-filter.py > TWSE-company-utf8-filter.csv
       - name: CSV merger
         run: |
           csvstack TWSE-company-utf8.csv TPEX-company-utf8.csv > TWSE_TPEX-utf8.csv
+          csvstack TWSE-company-utf8-filter.csv TPEX-company-utf8-filter.csv > TWSE_TPEX-utf8-filter.csv
 
       - name: Lines count
         run: |
@@ -48,7 +50,10 @@ jobs:
           
           python CountCSVLine.py TWSE_TPEX.json TWSE_TPEX-utf8.csv "TWSE+TPEX IPO Company"
           
-          python CountCSVLine.py TPEX-Filter.json TPEX-company-utf8.csv "TPEX Auction Filter Company"
+          python CountCSVLine.py TPEX-Filter.json TPEX-company-utf8-filter.csv "TPEX IPO Valid Company"
+          python CountCSVLine.py TWSE-Filter.json TWSE-company-utf8-filter.csv "TWSE IPO Valid Company"
+
+          python CountCSVLine.py TWSE_TPEX-Filter.json TWSE_TPEX-utf8-filter.csv "TWSE+TPEX IPO Valid Company"
       - name: Create MD
         id: csv-table-output
         run: |
@@ -56,9 +61,10 @@ jobs:
           python csv-to-md.py TPEX-company-utf8-filter.csv utf8 > TPEX-company-utf8-filter.md
             
           python csv-to-md.py TWSE-company-utf8.csv utf8 > TWSE-company-utf8.md
+          python csv-to-md.py TWSE-company-utf8-filter.csv utf8 > TWSE-company-utf8-filter.md
 
           python csv-to-md.py TWSE_TPEX-utf8.csv utf8 > TWSE_TPEX-utf8.md
-
+          python csv-to-md.py TWSE_TPEX-utf8-filter.csv utf8 > TWSE_TPEX-utf8-filter.md
       - name: Get all changed on *.csv
         id: changed-csv-files
         uses: tj-actions/changed-files@v45
