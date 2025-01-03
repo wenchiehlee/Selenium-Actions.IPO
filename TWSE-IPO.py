@@ -84,5 +84,5 @@ def process_file(input_file, output_file, write_header=True):
 
 if __name__ == "__main__":
     input_file = "applylisting.csv"
-    output_file = "TWSE-company-utf8.csv"
+    output_file = "TWSE-IPO-utf8.csv"
     process_file(input_file, output_file, write_header=True)
