@@ -83,10 +83,10 @@ time.sleep(2)
 getDownLoadedFileNameClose()
 DownloadedFilename=''.join(latestDownloadedFileName).encode().decode("utf-8")
 
-if DownloadedFilename != "TPEX-company-utf8.csv":
+if DownloadedFilename != "TPEX-IPO-utf8.csv":
     # Copy the file to "OTC.csv"
-    shutil.copy(DownloadedFilename, "TPEX-company-utf8.csv")
-    print(f"File '{DownloadedFilename}' copied to 'TPEX-company-utf8.csv'.")
-    print("Download completed...",downloadDir+'TPEX-company-utf8.csv')
+    shutil.copy(DownloadedFilename, "TPEX-IPO-utf8.csv")
+    print(f"File '{DownloadedFilename}' copied to 'TPEX-IPO-utf8.csv'.")
+    print("Download completed...",downloadDir+'TPEX-IPO-utf8.csv')
     # 移除原始檔案
     os.remove(DownloadedFilename)
