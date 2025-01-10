@@ -20,6 +20,7 @@ group:
         wenchiehlee/rss2md
         wenchiehlee/GoogleSearch
         wenchiehlee/FindMind
+        wenchiehlee/Python-Actions.OpenAI
   # 2nd group
   - files:
       - source: CountCSVLine.py
