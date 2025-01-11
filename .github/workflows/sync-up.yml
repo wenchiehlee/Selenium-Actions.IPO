@@ -1,9 +1,13 @@
 #.github/workflows/sync-up.yml
 name: Sync Common Code
 on:
+  workflow_dispatch:
   push:
     branches:
       - main
+    paths:
+      - .github/workflows/sync-up.yml # 僅在此檔案變更時觸發
+      - .github/sync.yml              # 僅在此檔案變更時觸發
 jobs:
   sync-backup-workflow:
     runs-on: ubuntu-latest
