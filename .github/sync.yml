@@ -1,6 +1,6 @@
 #.github/sync.yml
 group:
-  # 1st group
+  # 1st group for sync-up
   - files:
       - source: .gitignore
         dest:   .gitignore
@@ -22,8 +22,10 @@ group:
         wenchiehlee/FindMind
         wenchiehlee/Python-Actions.OpenAI
         wenchiehlee/Python-Actions.OpenAPI
+        wenchiehlee/Python-Actions.StockList
+        wenchiehlee/GoPublic    
   #     ZhongZheng782/wenchiehlee.quickconnect.to
-  # 2nd group
+  # 2nd group for CountCSVLine
   - files:
       - source: CountCSVLine.py
         dest:   CountCSVLine.py
@@ -32,3 +34,10 @@ group:
         wenchiehlee/Python-Actions.PER
         wenchiehlee/Selenium-Actions.Auction
         wenchiehlee/Python-Actions.OpenAPI
+# 3rd group for GoPublic
+  - files:
+      - source: 觀察名單.csv
+        dest:   觀察名單.csv
+    repos: |
+        wenchiehlee/Python-Actions.StockList
+        wenchiehlee/GoPublic
