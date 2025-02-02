@@ -38,7 +38,7 @@ sys.stdout.reconfigure(newline='')
 writer = csv.writer(sys.stdout, quotechar='"', quoting=csv.QUOTE_ALL)
 
 # Write header row to standard output
-writer.writerow(["申請日期", "股票代號", "公司名稱", "董事長", "申請時股本", "上櫃審議委員會審議日期", "櫃買董事會通過上櫃日期", "櫃買同意上櫃契約日期或證期局核准上櫃契約日期", "股票上櫃買賣日期", "主辦承銷商", "承銷價", "備註"])
+writer.writerow(["申請日期", "股票代號", "公司名稱", "董事長", "申請時股本(仟元)", "上櫃審議委員會審議日期", "櫃買董事會通過上櫃日期", "櫃買同意上櫃契約日期或證期局核准上櫃契約日期", "股票上櫃買賣日期", "主辦承銷商", "承銷價", "備註"])
 
 # Process rows and write each filtered row to standard output
 for filtered_row in processor.process(sys.stdin):

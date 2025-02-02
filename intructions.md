@@ -23,7 +23,7 @@
    - 股票代號
    - 公司名稱
    - 董事長
-   - 申請時股本
+   - 申請時股本(仟元)
    - 上櫃審議委員會審議日期
    - 櫃買董事會通過上櫃日期
    - 櫃買同意上櫃契約日期或證期局核准上櫃契約日期
@@ -40,6 +40,6 @@
    - 櫃買同意上櫃契約日期或證期局核准上櫃契約日期
    - 股票上櫃買賣日期
 10. Remove commas from numerical fields for consistent formatting and processing. The applicable fields are: 
-    - 申請時股本
+    - 申請時股本(仟元)
     - 承銷價
 11. If a date cannot be converted (e.g., due to an invalid format), log the error with sufficient details for debugging.
