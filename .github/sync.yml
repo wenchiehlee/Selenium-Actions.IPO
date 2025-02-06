@@ -38,6 +38,11 @@ group:
   - files:
       - source: 觀察名單.csv
         dest:   觀察名單.csv
+    repos: |
+        wenchiehlee/Python-Actions.StockList
+        wenchiehlee/GoPublic
+# 4th group for GoPublic
+  - files:
       - source: 未來競標名單.csv
         dest:   未來競標名單.csv
       - source: 已開標名單.csv
@@ -45,3 +50,4 @@ group:
     repos: |
         wenchiehlee/Python-Actions.StockList
         wenchiehlee/GoPublic
+        wenchiehlee/Selenium-Actions.Auction
