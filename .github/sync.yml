@@ -38,6 +38,10 @@ group:
   - files:
       - source: 觀察名單.csv
         dest:   觀察名單.csv
+      - source: 未來競標名單.csv
+        dest:   未來競標名單.csv
+      - source: 已開標名單.csv
+        dest:   已開標名單.csv
     repos: |
         wenchiehlee/Python-Actions.StockList
         wenchiehlee/GoPublic
