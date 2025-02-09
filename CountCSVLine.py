@@ -2,15 +2,16 @@ import csv
 import sys
 import json
 
-def count_csv_lines(file_path, output_path, label):
+def count_csv_lines(file_path, output_path, label, color="blue"):
     """
     Counts the number of data lines (excluding header) in a CSV file
-    and writes the count to a JSON file in Shields.io format with a custom label.
+    and writes the count to a JSON file in Shields.io format with a custom label and optional color.
 
     Parameters:
         file_path (str): Path to the input CSV file.
         output_path (str): Path to the output JSON file.
         label (str): Label for the badge.
+        color (str, optional): Color for the badge. Defaults to 'blue'.
     """
     try:
         # Open the CSV file in read mode with UTF-8 encoding
@@ -28,7 +29,7 @@ def count_csv_lines(file_path, output_path, label):
             "schemaVersion": 1,
             "label": label,
             "message": str(line_count),
-            "color": "blue"
+            "color": color
         }
 
         # Write the badge data to the output JSON file
@@ -42,11 +43,12 @@ def count_csv_lines(file_path, output_path, label):
         print(f"An error occurred: {e}")
 
 if __name__ == "__main__":
-    # Ensure the script is run with exactly three arguments
-    if len(sys.argv) != 4:
-        print("Usage: python count_csv_lines.py <output_path> <file_path> <label>")
+    # Ensure the script is run with at least three arguments
+    if len(sys.argv) < 4 or len(sys.argv) > 5:
+        print("Usage: python count_csv_lines.py <output_path> <file_path> <label> [color]")
     else:
         output_file = sys.argv[1]
         input_file = sys.argv[2]
         badge_label = sys.argv[3]
-        count_csv_lines(input_file, output_file, badge_label)
+        badge_color = sys.argv[4] if len(sys.argv) == 5 else "blue"
+        count_csv_lines(input_file, output_file, badge_label, badge_color)
