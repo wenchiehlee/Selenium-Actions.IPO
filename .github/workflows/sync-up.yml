@@ -11,6 +11,8 @@ on:
       - .gitignore                    # 僅在此檔案變更時觸發
       - CountCSVLine.py               # 僅在此檔案變更時觸發
       - 觀察名單.csv                   # 僅在此檔案變更時觸發
+      - 已開標名單.csv                 # 僅在此檔案變更時觸發
+      - 未來競標名單.csv               # 僅在此檔案變更時觸發
 jobs:
   sync-backup-workflow:
     runs-on: ubuntu-latest
