@@ -54,10 +54,6 @@ chrome_options.add_argument("--no-sandbox")
     
 driver = webdriver.Chrome(options = chrome_options)
 
-#driver.get('http://github.com')
-#print(driver.title)
-#with open('./GitHub_Action_Results.txt', 'w') as f:
-#    f.write(f"This was written with a GitHub action {driver.title}")
 
 # 打開目標網頁
 driver.get("https://www.tpex.org.tw/zh-tw/mainboard/applying/status/company.html")
@@ -73,7 +69,7 @@ ActionChains(driver).move_to_element(download_button).click(download_button).per
 
 # 等待下載完成
 time.sleep(2)  # 視下載速度調整時間
-print("CSV 文件下載完成！")
+print("CSV completed！")
 
             
 #driver.get_screenshot_as_file("page.png")
@@ -88,5 +84,38 @@ if DownloadedFilename != "TPEX-IPO-utf8.csv":
     shutil.copy(DownloadedFilename, "TPEX-IPO-utf8.csv")
     print(f"File '{DownloadedFilename}' copied to 'TPEX-IPO-utf8.csv'.")
     print("Download completed...",downloadDir+'TPEX-IPO-utf8.csv')
+    # 移除原始檔案
+    os.remove(DownloadedFilename)
+
+
+# 打開目標網頁
+driver.get("https://www.twse.com.tw/zh/listed/listed/apply-listing.html")
+
+# 等待按鈕加載並按 data-format 屬性為 csv-u8 定位按鈕
+wait = WebDriverWait(driver, 10)  # 等待按鈕的時間
+download_button = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, "button[class='csv']")))
+
+# 滾動到按鈕並點擊
+driver.execute_script("arguments[0].scrollIntoView(true);", download_button)
+ActionChains(driver).move_to_element(download_button).click(download_button).perform()
+
+
+# 等待下載完成
+time.sleep(2)  # 視下載速度調整時間
+print("CSV completed！")
+
+            
+#driver.get_screenshot_as_file("page.png")
+latestDownloadedFileName = getDownLoadedFileName() 
+time.sleep(2)
+#driver.get_screenshot_as_file("page1.png")
+getDownLoadedFileNameClose()
+DownloadedFilename=''.join(latestDownloadedFileName).encode().decode("utf-8")
+
+if DownloadedFilename != "applylisting.csv":
+    # Copy the file to "OTC.csv"
+    shutil.copy(DownloadedFilename, "applylisting.csv")
+    print(f"File '{DownloadedFilename}' copied to 'applylisting.csv'.")
+    print("Download completed...",downloadDir+'applylisting.csv')
     # 移除原始檔案
     os.remove(DownloadedFilename)
