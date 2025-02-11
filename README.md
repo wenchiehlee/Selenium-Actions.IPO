@@ -7,4 +7,4 @@
 Working space for Selenium-Action.IPO
 
 * (1) TPEX Mainboard https://www.tpex.org.tw/zh-tw/mainboard/applying/status/company.html (From 2014/04/09-Now)
-* (2) TWSE https://www.twse.com.tw/pcversion/zh/company/applylisting (From 2000/03/10-Now)
+* (2) TWSE https://www.twse.com.tw/zh/listed/listed/apply-listing.html (From 2000/03/10-Now)
