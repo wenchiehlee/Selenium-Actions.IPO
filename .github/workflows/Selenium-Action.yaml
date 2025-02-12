@@ -45,8 +45,8 @@ jobs:
           csvstack TWSE-IPO-utf8.csv TPEX-IPO-utf8.csv > TWSE_TPEX-IPO-utf8.csv
           csvstack TWSE-IPO-utf8-filter.csv TPEX-IPO-utf8-filter.csv > TWSE_TPEX-IPO-utf8-filter.csv
 
-          csvsort TWSE_TPEX-IPO-utf8.csv > TWSE_TPEX-IPO-utf8-sort.csv
-          csvsort TWSE_TPEX-IPO-utf8-filter.csv > TWSE_TPEX-IPO-utf8-filter-sort.csv
+          csvsort -r TWSE_TPEX-IPO-utf8.csv > TWSE_TPEX-IPO-utf8-sort.csv
+          csvsort -r TWSE_TPEX-IPO-utf8-filter.csv > TWSE_TPEX-IPO-utf8-filter-sort.csv
 
       - name: Lines count
         run: |
