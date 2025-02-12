@@ -45,17 +45,20 @@ jobs:
           csvstack TWSE-IPO-utf8.csv TPEX-IPO-utf8.csv > TWSE_TPEX-IPO-utf8.csv
           csvstack TWSE-IPO-utf8-filter.csv TPEX-IPO-utf8-filter.csv > TWSE_TPEX-IPO-utf8-filter.csv
 
+          csvsort TWSE_TPEX-IPO-utf8.csv > TWSE_TPEX-IPO-utf8-sort.csv
+          csvsort TWSE_TPEX-IPO-utf8-filter.csv > TWSE_TPEX-IPO-utf8-filter-sort.csv
+
       - name: Lines count
         run: |
           python CountCSVLine.py TWSE.json TWSE-IPO-utf8.csv "TWSE IPO IPO"
           python CountCSVLine.py TPEX.json TPEX-IPO-utf8.csv "TPEX IPO IPO"
           
-          python CountCSVLine.py TWSE_TPEX.json TWSE_TPEX-IPO-utf8.csv "TWSE+TPEX IPO IPO"
+          python CountCSVLine.py TWSE_TPEX.json TWSE_TPEX-IPO-utf8-sort.csv "TWSE+TPEX IPO IPO"
           
           python CountCSVLine.py TPEX-filter.json TPEX-IPO-utf8-filter.csv "TPEX IPO Valid IPO"
           python CountCSVLine.py TWSE-filter.json TWSE-IPO-utf8-filter.csv "TWSE IPO Valid IPO"
 
-          python CountCSVLine.py TWSE_TPEX-filter.json TWSE_TPEX-IPO-utf8-filter.csv "TWSE+TPEX IPO Valid IPO"
+          python CountCSVLine.py TWSE_TPEX-filter.json TWSE_TPEX-IPO-utf8-filter-sort.csv "TWSE+TPEX IPO Valid IPO"
       - name: Create MD
         id: csv-table-output
         run: |
