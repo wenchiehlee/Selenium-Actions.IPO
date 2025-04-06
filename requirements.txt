@@ -6,3 +6,4 @@ csvkit
 csv2md
 chardet
 pandas
+requests
