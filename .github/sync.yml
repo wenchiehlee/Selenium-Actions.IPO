@@ -24,7 +24,6 @@ group:
         wenchiehlee/Python-Actions.OpenAPI
         wenchiehlee/Python-Actions.StockList
         wenchiehlee/GoPublic
-        wenchiehlee/Python-Actions.ModelsPricePredict
   #     ZhongZheng782/wenchiehlee.quickconnect.to
   # 2nd group for CountCSVLine
   - files:
@@ -35,7 +34,6 @@ group:
         wenchiehlee/Python-Actions.PER
         wenchiehlee/Selenium-Actions.Auction
         wenchiehlee/Python-Actions.OpenAPI
-        wenchiehlee/Python-Actions.ModelsPricePredict
 # 3rd group for GoPublic
   - files:
       - source: 觀察名單.csv
