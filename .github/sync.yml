@@ -54,6 +54,5 @@ group:
       - source: 已開標清單.csv
         dest:   已開標清單.csv
     repos: |
-        wenchiehlee/Python-Actions.StockList
         wenchiehlee/GoPublic
         wenchiehlee/Selenium-Actions.Auction
