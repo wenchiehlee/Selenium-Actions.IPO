@@ -4,3 +4,10 @@ page-authors.json
 *.bak
 __pycache__
 .env
+/data/reports/detailed_report_v*.csv
+/data/reports/detailed_report_2*.csv
+/data/reports/portfolio_summary_2*.csv
+/data/reports/portfolio_summary_v*.csv
+/data/reports/validation_summary_2*.csv
+/logs
+/cache
