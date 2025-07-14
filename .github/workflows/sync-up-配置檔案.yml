@@ -11,7 +11,6 @@ on:
        - .github/sync-配置檔案.yml              # 僅在此檔案變更時觸發
        - .github/workflows/sync-up-名單清單.yml # 僅在此檔案變更時觸發
        - .github/sync-名單清單.yml              # 僅在此檔案變更時觸發
-       - .github/sync.yml              # 僅在此檔案變更時觸發
        - .gitignore                    # 僅在此檔案變更時觸發
        - CountCSVLine.py               # 僅在此檔案變更時觸發
 jobs:
