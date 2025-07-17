@@ -1,0 +1,58 @@
+#.github/sync.yml
+group:
+  # 1st group for sync-up
+  - files:
+      - source: .gitignore
+        dest:   .gitignore
+      - source: .github/workflows/sync-up.yml
+        dest:   .github/workflows/sync-up.yml
+      - source: .github/sync.yml
+        dest:   .github/sync.yml
+    repos: |
+        wenchiehlee/mkdocs
+        wenchiehlee/mkdocs-life
+        wenchiehlee/mkdocs-investment
+        wenchiehlee/GoogleSearch
+        wenchiehlee/Python-Actions.PER
+        wenchiehlee/Selenium-Actions.IPO
+        wenchiehlee/Selenium-Actions.Auction
+        wenchiehlee/twstock
+        wenchiehlee/rss2md
+        wenchiehlee/GoogleSearch
+        wenchiehlee/FindMind
+        wenchiehlee/Python-Actions.OpenAI
+        wenchiehlee/Python-Actions.OpenAPI
+        wenchiehlee/Python-Actions.StockList
+        wenchiehlee/GoPublic
+  #     ZhongZheng782/wenchiehlee.quickconnect.to
+  # 2nd group for CountCSVLine
+  - files:
+      - source: CountCSVLine.py
+        dest:   CountCSVLine.py
+    repos: |
+        wenchiehlee/Selenium-Actions.IPO
+        wenchiehlee/Python-Actions.PER
+        wenchiehlee/Selenium-Actions.Auction
+        wenchiehlee/Python-Actions.OpenAPI
+# 3rd group for GoPublic
+  - files:
+      - source: 觀察名單.csv
+        dest:   觀察名單.csv
+      - source: 觀察清單.csv
+        dest:   觀察清單.csv
+    repos: |
+        wenchiehlee/Python-Actions.StockList
+        wenchiehlee/GoPublic
+# 4th group for GoPublic
+  - files:
+      - source: 未來競標名單.csv
+        dest:   未來競標名單.csv
+      - source: 已開標名單.csv
+        dest:   已開標名單.csv
+      - source: 未來競標清單.csv
+        dest:   未來競標清單.csv
+      - source: 已開標清單.csv
+        dest:   已開標清單.csv
+    repos: |
+        wenchiehlee/GoPublic
+        wenchiehlee/Selenium-Actions.Auction
