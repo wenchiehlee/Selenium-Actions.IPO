@@ -3,7 +3,7 @@ name: Sync Common Code
 on:
   workflow_dispatch:
   schedule:
-    - cron: "0 19 * * *"  # Runs every day at 7:00 PM UTC (3:00 AM Taipei time)
+    - cron: "0 0 1 1 *"  # Runs once a year on January 1st at 00:00 UTC (8:00 AM Taipei time)
   # push:
   #   branches:
   #     - main
