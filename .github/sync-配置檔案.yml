@@ -6,12 +6,8 @@ group:
         dest:   .gitignore
       - source: .github/workflows/sync-up-配置檔案.yml
         dest:   .github/workflows/sync-up-配置檔案.yml
-      - source: .github/workflows/sync-up-名單清單.yml
-        dest:   .github/workflows/sync-up-名單清單.yml
       - source: .github/sync-配置檔案.yml
         dest:   .github/sync-配置檔案.yml
-      - source: .github/sync-名單清單.yml
-        dest:   .github/sync-名單清單.yml
     repos: |
         wenchiehlee/mkdocs
         wenchiehlee/mkdocs-life
