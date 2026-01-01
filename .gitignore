@@ -11,3 +11,5 @@ __pycache__
 /data/reports/validation_summary_2*.csv
 /logs
 /cache
+quality_check.txt
+old_files_report.txt
