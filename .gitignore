@@ -18,3 +18,6 @@ quarantine_output.txt
 .idea/
 .gemini/
 .ipynb_checkpoints/
+
+.env*
+.claude/
