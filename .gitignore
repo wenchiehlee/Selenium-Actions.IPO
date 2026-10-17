@@ -20,4 +20,5 @@ quarantine_output.txt
 .ipynb_checkpoints/
 
 .env*
+# Gemini CLI safety audit
 .claude/
