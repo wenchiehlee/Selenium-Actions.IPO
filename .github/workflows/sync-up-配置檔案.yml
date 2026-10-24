@@ -14,7 +14,7 @@ on:
        - .gitignore                    # 僅在此檔案變更時觸發
        - CountCSVLine.py               # 僅在此檔案變更時觸發
 jobs:
-  sync-backup-workflow:
+  sync-downstream-workflow:
     runs-on: ubuntu-latest
     # if: github.event.pull_request.merged == true
     steps:
