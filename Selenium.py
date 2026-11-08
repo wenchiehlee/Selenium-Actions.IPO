@@ -21,29 +21,16 @@ from pyvirtualdisplay import Display
 display = Display(visible=0, size=(800, 800))  
 display.start()
 
-chromedriver_autoinstaller.install()  # Check if the current version of chromedriver exists
-                                      # and if it doesn't exist, download it automatically,
-                                      # then add chromedriver to path
+chromedriver_autoinstaller.install()
 
-
-def getDownLoadedFileNameClose():
-    driver.close()
-    driver.switch_to.window(driver.window_handles[0])
-def getDownLoadedFileName():
-    driver.execute_script("window.open()")
-    driver.switch_to.window(driver.window_handles[-1])
-    driver.get('chrome://downloads')
-    #driver.get_screenshot_as_file("page.png")
-    return driver.execute_script("return document.querySelector('downloads-manager').shadowRoot.querySelector('#downloadsList downloads-item').shadowRoot.querySelector('div#content  #file-link').text")
- 
-  
-downloadDir = f"{os.getcwd()}//"
-preferences = {"download.default_directory": downloadDir,
-                "download.prompt_for_download": False,
-                "directory_upgrade": True,
-                "safebrowsing.enabled": True}
+downloadDir = os.path.abspath(".") + os.sep
+preferences = {
+    "download.default_directory": downloadDir,
+    "download.prompt_for_download": False,
+    "directory_upgrade": True,
+    "safebrowsing.enabled": True
+}
 chrome_options = webdriver.ChromeOptions()  
-
 chrome_options.add_experimental_option("prefs", preferences)
 chrome_options.add_experimental_option('excludeSwitches', ['enable-logging'])
 chrome_options.add_argument("--window-size=1200,1200")
@@ -51,71 +38,67 @@ chrome_options.add_argument("--disable-gpu")
 chrome_options.add_argument("--ignore-certificate-errors")
 chrome_options.add_argument("--no-sandbox")
 
-    
-driver = webdriver.Chrome(options = chrome_options)
+driver = webdriver.Chrome(options=chrome_options)
+try:
+    driver.execute_cdp_cmd("Page.setDownloadBehavior", {
+        "behavior": "allow",
+        "downloadPath": downloadDir
+    })
+except Exception as e:
+    print(f"CDP setDownloadBehavior warning: {e}")
 
+def wait_for_download(before_set, target_default, timeout=30):
+    start = time.time()
+    while time.time() - start < timeout:
+        time.sleep(1)
+        after_set = set(os.listdir(downloadDir))
+        new_files = [f for f in (after_set - before_set) if not f.endswith('.crdownload') and not f.endswith('.tmp')]
+        if new_files:
+            return new_files[0]
+    csvs = [f for f in os.listdir(downloadDir) if f.endswith('.csv')]
+    if csvs:
+        csvs.sort(key=lambda x: os.path.getmtime(os.path.join(downloadDir, x)), reverse=True)
+        return csvs[0]
+    return target_default
 
-# 打開目標網頁
+# 1. TPEX
+print("Visiting TPEX...")
 driver.get("https://www.tpex.org.tw/zh-tw/mainboard/applying/status/company.html")
-
-# 等待按鈕加載並按 data-format 屬性為 csv-u8 定位按鈕
-wait = WebDriverWait(driver, 10)  # 等待按鈕的時間
+wait = WebDriverWait(driver, 15)
 download_button = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, "button[data-format='csv-u8']")))
-
-# 滾動到按鈕並點擊
+before_files = set(os.listdir(downloadDir))
 driver.execute_script("arguments[0].scrollIntoView(true);", download_button)
 ActionChains(driver).move_to_element(download_button).click(download_button).perform()
 
-
-# 等待下載完成
-time.sleep(2)  # 視下載速度調整時間
-print("CSV completed！")
-
-            
-#driver.get_screenshot_as_file("page.png")
-latestDownloadedFileName = getDownLoadedFileName() 
-time.sleep(2)
-#driver.get_screenshot_as_file("page1.png")
-getDownLoadedFileNameClose()
-DownloadedFilename=''.join(latestDownloadedFileName).encode().decode("utf-8")
-
-if DownloadedFilename != "TPEX-IPO-utf8.csv":
-    # Copy the file to "OTC.csv"
+DownloadedFilename = wait_for_download(before_files, "TPEX-IPO-utf8.csv")
+print(f"TPEX DownloadedFilename: {DownloadedFilename}")
+if DownloadedFilename and DownloadedFilename != "TPEX-IPO-utf8.csv":
     shutil.copy(DownloadedFilename, "TPEX-IPO-utf8.csv")
     print(f"File '{DownloadedFilename}' copied to 'TPEX-IPO-utf8.csv'.")
-    print("Download completed...",downloadDir+'TPEX-IPO-utf8.csv')
-    # 移除原始檔案
-    os.remove(DownloadedFilename)
+    if os.path.exists(DownloadedFilename) and DownloadedFilename != "TPEX-IPO-utf8.csv":
+        try:
+            os.remove(DownloadedFilename)
+        except Exception:
+            pass
 
-
-# 打開目標網頁
+# 2. TWSE
+print("Visiting TWSE...")
 driver.get("https://www.twse.com.tw/zh/listed/listed/apply-listing.html")
-
-# 等待按鈕加載並按 data-format 屬性為 csv-u8 定位按鈕
-wait = WebDriverWait(driver, 10)  # 等待按鈕的時間
+wait = WebDriverWait(driver, 15)
 download_button = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, "button[class='csv']")))
-
-# 滾動到按鈕並點擊
+before_files = set(os.listdir(downloadDir))
 driver.execute_script("arguments[0].scrollIntoView(true);", download_button)
 ActionChains(driver).move_to_element(download_button).click(download_button).perform()
 
-
-# 等待下載完成
-time.sleep(2)  # 視下載速度調整時間
-print("CSV completed！")
-
-            
-#driver.get_screenshot_as_file("page.png")
-latestDownloadedFileName = getDownLoadedFileName() 
-time.sleep(2)
-#driver.get_screenshot_as_file("page1.png")
-getDownLoadedFileNameClose()
-DownloadedFilename=''.join(latestDownloadedFileName).encode().decode("utf-8")
-
-if DownloadedFilename != "applylisting.csv":
-    # Copy the file to "OTC.csv"
+DownloadedFilename = wait_for_download(before_files, "applylisting.csv")
+print(f"TWSE DownloadedFilename: {DownloadedFilename}")
+if DownloadedFilename and DownloadedFilename != "applylisting.csv":
     shutil.copy(DownloadedFilename, "applylisting.csv")
     print(f"File '{DownloadedFilename}' copied to 'applylisting.csv'.")
-    print("Download completed...",downloadDir+'applylisting.csv')
-    # 移除原始檔案
-    os.remove(DownloadedFilename)
+    if os.path.exists(DownloadedFilename) and DownloadedFilename != "applylisting.csv":
+        try:
+            os.remove(DownloadedFilename)
+        except Exception:
+            pass
+
+driver.quit()
