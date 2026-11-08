@@ -17,7 +17,7 @@ jobs:
       - name: Setting up Python
         uses: actions/setup-python@v7
         with:
-          python-version: '3.9'
+          python-version: '3.11'
 
       - name: Removing previous chrome instances on runner 
         run: sudo apt purge google-chrome-stable  
