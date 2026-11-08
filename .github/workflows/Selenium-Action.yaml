@@ -10,7 +10,7 @@ on:
     types: 2020-Now-utf8-filter.csv
 jobs:
   scrape:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - name: Checking out repo
         uses: actions/checkout@v7
