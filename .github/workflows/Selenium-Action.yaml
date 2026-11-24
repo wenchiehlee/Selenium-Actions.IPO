@@ -74,7 +74,7 @@ jobs:
           python csv-to-md.py TWSE_TPEX-IPO-utf8-filter.csv utf8 > TWSE_TPEX-IPO-utf8-filter.md
       - name: Get all changed on *.csv
         id: changed-csv-files
-        uses: tj-actions/changed-files@v45
+        uses: tj-actions/changed-files@v47
         with:
           # Avoid using single or double quotes for multiline patterns
           files: |
