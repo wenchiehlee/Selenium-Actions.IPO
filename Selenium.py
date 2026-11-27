@@ -92,7 +92,7 @@ request = Request(
 )
 with urlopen(request, timeout=30) as response:
     payload = response.read()
-if not payload or b"公司代號" not in payload:
+if not payload or b"," not in payload:
     raise RuntimeError("TWSE returned an empty or unexpected IPO CSV response")
 with open(os.path.join(downloadDir, "applylisting.csv"), "wb") as output:
     output.write(payload)
