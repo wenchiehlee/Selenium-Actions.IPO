@@ -81,24 +81,21 @@ if DownloadedFilename and DownloadedFilename != "TPEX-IPO-utf8.csv":
         except Exception:
             pass
 
-# 2. TWSE
-print("Visiting TWSE...")
-driver.get("https://www.twse.com.tw/zh/listed/listed/apply-listing.html")
-wait = WebDriverWait(driver, 15)
-download_button = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, "button[class='csv']")))
-before_files = set(os.listdir(downloadDir))
-driver.execute_script("arguments[0].scrollIntoView(true);", download_button)
-ActionChains(driver).move_to_element(download_button).click(download_button).perform()
+# 2. TWSE: use the official CSV endpoint directly instead of a brittle UI selector.
+# The endpoint returns MS950/Big5-compatible CSV, which TWSE-IPO.py converts to UTF-8.
+from urllib.request import Request, urlopen
 
-DownloadedFilename = wait_for_download(before_files, "applylisting.csv")
-print(f"TWSE DownloadedFilename: {DownloadedFilename}")
-if DownloadedFilename and DownloadedFilename != "applylisting.csv":
-    shutil.copy(DownloadedFilename, "applylisting.csv")
-    print(f"File '{DownloadedFilename}' copied to 'applylisting.csv'.")
-    if os.path.exists(DownloadedFilename) and DownloadedFilename != "applylisting.csv":
-        try:
-            os.remove(DownloadedFilename)
-        except Exception:
-            pass
+print("Downloading TWSE IPO application CSV...")
+request = Request(
+    "https://www.twse.com.tw/rwd/zh/company/applylisting?response=csv",
+    headers={"User-Agent": "Mozilla/5.0"}
+)
+with urlopen(request, timeout=30) as response:
+    payload = response.read()
+if not payload or b"公司代號" not in payload:
+    raise RuntimeError("TWSE returned an empty or unexpected IPO CSV response")
+with open(os.path.join(downloadDir, "applylisting.csv"), "wb") as output:
+    output.write(payload)
+print(f"TWSE CSV saved: applylisting.csv ({len(payload)} bytes)")
 
 driver.quit()
